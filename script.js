@@ -42,7 +42,8 @@ $(document).ready(function () {
      *
      */
 
-    //FIXME: This function is not working properly. It is generating too many cards and sometimes cards without images
+    //FIXME: //*DONE*//This function is not working properly. It is generating too many cards and sometimes cards without images// Done!
+
     function generateCards() {
         cards = [];
         var dir = "resources/gameCards/";
@@ -54,7 +55,7 @@ $(document).ready(function () {
             symbols.push(dir + "img" + j + fileExtension);
         }
 
-        for (var i = 0; i < cardPairs; i++) {
+        for (var i = 0; i < cardPairs/2; i++) {
             var card1 = {symbol: symbols[i], flipped: false, matched: false};
             var card2 = {symbol: symbols[i], flipped: false, matched: false};
             cards.push(card1, card2);
@@ -85,7 +86,7 @@ $(document).ready(function () {
         var gameBoard = $("#game-board");
         gameBoard.empty();
         for (var i = 0; i < cards.length; i++) {
-            var card = $("<div>").addClass("card hidden").attr("data-index", i);
+            var card = $("<div>").addClass("card show hidden").attr("data-index", i);
             gameBoard.append(card);
         }
         $(".card").click(function () {
