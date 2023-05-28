@@ -7,8 +7,9 @@ $(document).ready(function () {
   var flippedCards = [];
   var matchedPairs = 0;
   var gameStarted = false;
-  var startTime;
+  var elapsedTime = 0;
   var gameInterval;
+  var gamePaused = false;
 
   $("#start-form").submit(function (e) {
     e.preventDefault();
@@ -29,6 +30,9 @@ $(document).ready(function () {
     $("#game-form").hide();
     $("#player-info").text("Player: " + playerName);
     $("#game-container").show();
+    $("#pause-btn").show();
+    $("#reset-btn").hide();
+    $("#resume-btn").hide();
     generateCards();
     redrawGameBoard();
     startClock();
@@ -106,7 +110,7 @@ $(document).ready(function () {
   function flipCard(index) {
     var card = cards[index];
 
-    if (!gameStarted) return;
+    if (!gameStarted || gamePaused) return;
     if (card.flipped || card.matched) return;
 
     card.flipped = true;
@@ -149,7 +153,6 @@ $(document).ready(function () {
     var card = cards[index];
     var cardElement = $(".card[data-index='" + index + "']");
     var imgElement = cardElement.find("img");
-
     if (card.flipped) {
       if (imgElement.length === 0) {
         imgElement = $("<img>").attr("src", card.symbol).addClass("card-img");
@@ -170,23 +173,24 @@ $(document).ready(function () {
   }
 
 
-
   /**
    * the following 3 "clock" functions i took from the internet
    */
   function startClock() {
-    startTime = new Date().getTime();
+    startTime = new Date().getTime() - elapsedTime;
     gameStarted = true;
     gameInterval = setInterval(updateClock, 1000);
   }
 
   function updateClock() {
-    var currentTime = new Date().getTime();
-    var elapsedTime = currentTime - startTime;
-    var elapsedSeconds = Math.floor(elapsedTime / 1000);
-    var minutes = Math.floor(elapsedSeconds / 60);
-    var seconds = elapsedSeconds % 60;
-    $("#clock").text(formatTime(minutes) + ":" + formatTime(seconds));
+    if (!gamePaused) {
+      var currentTime = new Date().getTime();
+      elapsedTime = currentTime - startTime;
+      var elapsedSeconds = Math.floor(elapsedTime / 1000);
+      var minutes = Math.floor(elapsedSeconds / 60);
+      var seconds = elapsedSeconds % 60;
+      $("#clock").text(formatTime(minutes) + ":" + formatTime(seconds));
+    }
   }
 
   function formatTime(time) {
@@ -206,6 +210,9 @@ $(document).ready(function () {
     var totalTime = $("#clock").text();
     var gameEndMessage = "Congratulations, " + playerName + "!\nYou finished the game in " + totalTime;
     $("#player-info").text(gameEndMessage);
+    $("#pause-btn").hide();
+    $("#reset-btn").hide();
+    $("#resume-btn").hide();
     $("#play-again-btn").show().click(function () {
       resetGame();
     });
@@ -228,5 +235,42 @@ $(document).ready(function () {
     matchedPairs++;
     checkGameEnd();
     flippedCards = [];
+  }
+
+  // Variable to keep track of the game state
+  var gamePaused = false;
+
+  // Event listener for the pause button
+  $("#pause-btn").click(function () {
+    pauseGame();
+  });
+
+  // Event listener for the resume button
+  $("#resume-btn").click(function () {
+    resumeGame();
+  });
+
+  // Event listener for the reset button
+  $("#reset-btn").click(function () {
+    resetGame();
+  });
+
+  // ...existing code...
+
+  function pauseGame() {
+    gamePaused = true;
+    clearInterval(gameInterval);
+    $("#card-pairs").disabled = true;
+    $("#pause-btn").hide();
+    $("#resume-btn").show();
+    $("#reset-btn").show();
+  }
+
+  function resumeGame() {
+    gamePaused = false;
+    startClock();
+    $("#game-container").disabled = false;
+    $("#resume-btn").hide();
+    $("#pause-btn").show();
   }
 });
