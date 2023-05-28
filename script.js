@@ -143,12 +143,13 @@ $(document).ready(function () {
    * @return a card element
    *
    */
-  //fixme: This function is not working properly. It is not flipping the cards back over when they don't match
-  //fixme: and I don't want to use redrawGameBoard because it erases all the matching pairs
+
+
   function updateCardDisplay(index) {
     var card = cards[index];
     var cardElement = $(".card[data-index='" + index + "']");
     var imgElement = cardElement.find("img");
+
     if (card.flipped) {
       if (imgElement.length === 0) {
         imgElement = $("<img>").attr("src", card.symbol).addClass("card-img");
@@ -156,12 +157,18 @@ $(document).ready(function () {
       }
       cardElement.removeClass("hidden");
       cardElement.addClass("show");
+      cardElement.addClass("flip"); // Add flip class for animation
     } else {
-      //hide the card
-      cardElement.addClass("hidden");
-
+      cardElement.removeClass("show");
+      cardElement.addClass("flip"); // Add flip class for animation
+      // Delay hiding the card and removing flip class to allow the flip animation to complete
+      setTimeout(function () {
+        cardElement.addClass("hidden");
+        cardElement.removeClass("flip"); // Remove flip class to revert animation
+      }, 500); // Adjust the delay duration as needed
     }
   }
+
 
 
   /**
