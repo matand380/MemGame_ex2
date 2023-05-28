@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <meta charset="UTF-8">
-        <title>Memory Game</title>
-        <link rel="icon" href="resources/memory%20game%20icon.png" >
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Memory Game</title>
+  <link rel="icon" href="resources/memory%20game%20icon.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
 
-<div id="game-form" >
-        <h2 class="text-center mt-md-3">Welcome to the Memory Game!</h2>
+<div id="game-form">
+  <h2 class="text-center mt-md-3">Welcome to the Memory Game!</h2>
 
-        <form class="form-floating" id="start-form">
-                <div class="p-3">
-                        <label for="player-name">Player Name:</label>
-                        <input type="text" id="player-name" required>
-                </div>
-                <div class="p-3">
-                        <label for="card-pairs" >Number of Card Pairs (max 30):</label>
-                        <input type="number" id="card-pairs" min="1" max="30" required>
-                </div>
-                        <button type="submit" id="start-btn" class="btn btn-light" data-bs-toggle="popover">Start Game</button>
-        </form>
+  <form class="form-floating" id="start-form">
+    <div class="p-3">
+      <label for="player-name">Player Name:</label>
+      <input type="text" id="player-name" required>
+    </div>
+    <div class="p-3">
+      <label for="card-pairs">Number of Card Pairs (max 30):</label>
+      <input type="number" id="card-pairs" min="1" max="30" required>
+    </div>
+    <button type="submit" id="start-btn" class="btn btn-light" data-bs-toggle="popover">Start Game</button>
+  </form>
 </div>
-<div id="game-container" >
-        <h2 id="player-info"></h2>
-        <div id="clock">00:00</div>
-        <div id="game-board"></div>
-        <div id="onPlayButton">
-        <input type="button" id="pause-btn" class="btn btn-light btn-sm"  value="Pause">
-        <input type="button" id="resume-btn" class="btn btn-light btn-sm"  value="Resume Game">
-        <input type="button" id="reset-btn" class="btn btn-light btn-sm"  value="Reset Game">
-        <input type="button" id="play-again-btn" class="btn-info btn-sm" value="Play Again">
-        </div>
+<div id="game-container">
+  <h2 id="player-info"></h2>
+  <div id="clock">00:00</div>
+  <div id="game-board"></div>
+  <div id="onPlayBtn">
+    <input type="button" id="pause-btn" class="btn-info btn-sm" value="Pause">
+    <input type="button" id="resume-btn" class="btn-info btn-sm" value="Resume Game">
+    <input type="button" id="reset-btn" class="btn-info btn-sm" value="Reset Game">
+    <input type="button" id="play-again-btn" class="btn-info btn-sm" value="Play Again">
+  </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
 <script src="script.js"></script>
 </body>
 </html>

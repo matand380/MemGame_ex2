@@ -59,7 +59,7 @@ $(document).ready(function () {
       symbols.push(dir + "img" + j + fileExtension);
     }
 
-    for (var i = 0; i < cardPairs / 2; i++) {
+    for (var i = 0; i < cardPairs; i++) {
       var card1 = {symbol: symbols[i], flipped: false, matched: false};
       var card2 = {symbol: symbols[i], flipped: false, matched: false};
       cards.push(card1, card2);
@@ -198,8 +198,8 @@ $(document).ready(function () {
   }
 
   function checkGameEnd() {
-    if(cardPairs % 2 !== 0) cardPairs++;
-    if (matchedPairs === cardPairs/2) {
+    // if(cardPairs % 2 !== 0) cardPairs++;
+    if (matchedPairs === cardPairs) {
       clearInterval(gameInterval);
       gameStarted = false;
       showGameEnd();
@@ -213,6 +213,7 @@ $(document).ready(function () {
     $("#pause-btn").hide();
     $("#reset-btn").hide();
     $("#resume-btn").hide();
+    elapsedTime = 0;
     $("#play-again-btn").show().click(function () {
       resetGame();
     });
@@ -227,6 +228,7 @@ $(document).ready(function () {
     matchedPairs = 0;
     gameStarted = false;
     clearInterval(gameInterval);
+    elapsedTime = 0;
   }
 
   function cardsMatch(card1, card2){
@@ -236,26 +238,18 @@ $(document).ready(function () {
     checkGameEnd();
     flippedCards = [];
   }
-
-  // Variable to keep track of the game state
-  var gamePaused = false;
-
-  // Event listener for the pause button
+  
   $("#pause-btn").click(function () {
     pauseGame();
   });
 
-  // Event listener for the resume button
   $("#resume-btn").click(function () {
     resumeGame();
   });
 
-  // Event listener for the reset button
   $("#reset-btn").click(function () {
     resetGame();
   });
-
-  // ...existing code...
 
   function pauseGame() {
     gamePaused = true;
@@ -271,6 +265,7 @@ $(document).ready(function () {
     startClock();
     $("#game-container").disabled = false;
     $("#resume-btn").hide();
+    $("#reset-btn").hide();
     $("#pause-btn").show();
   }
 });

@@ -24,9 +24,10 @@ h2 {
 
 #game-container {
   display: none;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: 100px auto;
   text-align: center;
+  background-clip: border-box;
 }
 
 #player-info {
@@ -132,3 +133,15 @@ h2 {
 .flip {
   transform: rotateY(180deg);
 }
+#onPlayBtn input {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+   background: linear-gradient(135deg, #153677, #4e085f);
+  margin: 20px 10px 20px;
+  padding: 16px 50px;
+  border-radius: 50px;
+}
+
