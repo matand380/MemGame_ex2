@@ -45,9 +45,7 @@ $(document).ready(function () {
    * @return An array of card objects
    *
    */
-
-  //FIXME: //*DONE*//This function is not working properly. It is generating too many cards and sometimes cards without images// Done!
-
+  
   function generateCards() {
     cards = [];
     var dir = "resources/gameCards/";
@@ -126,12 +124,9 @@ $(document).ready(function () {
         cardsMatch(card1, card2);
       } else {
         gameStarted = false; // Disable clicking during the delay
-
-        //fixme: I don't understand why it is not working. i gave 1 second and it should flip back
         setTimeout(function () {
           card1.flipped = false;
           card2.flipped = false;
-
           updateCardDisplay(indexCard1);
           updateCardDisplay(indexCard2);
           gameStarted = true; // Re-enable clicking after the delay
@@ -147,8 +142,6 @@ $(document).ready(function () {
    * @return a card element
    *
    */
-
-
   function updateCardDisplay(index) {
     var card = cards[index];
     var cardElement = $(".card[data-index='" + index + "']");
@@ -231,7 +224,7 @@ $(document).ready(function () {
     elapsedTime = 0;
   }
 
-  function cardsMatch(card1, card2){
+  function cardsMatch(card1, card2) {
     card1.matched = true;
     card2.matched = true;
     matchedPairs++;
