@@ -17,7 +17,7 @@ h2 {
   background-clip: border-box;
   background: linear-gradient(135deg, #153677, #4e085f);
   background: transparent;
-  margin: 20px auto 20px;
+  margin: 100px auto 20px;
   padding: 2px 30px 70px;
   border-radius: 50px;
 }
@@ -80,13 +80,13 @@ h2 {
   box-shadow: 5px 5px 24px 5px rgba(0, 0, 0, 0.6);
 }
 
-.show img{
-   transform: rotateY(180deg);
-   transition: 1s;
-   background: skyblue;
-   color: white;
-   cursor: default;
- }
+.show img {
+  transform: rotateY(180deg);
+  transition: 1s;
+  background: skyblue;
+  color: white;
+  cursor: default;
+}
 
 #play-again-btn {
   cursor: pointer;
@@ -130,18 +130,25 @@ h2 {
 .card.hidden img {
   display: none;
 }
+
 .flip {
   transform: rotateY(180deg);
 }
+
 #onPlayBtn input {
   cursor: pointer;
   border: none;
   outline: none;
   color: #fff;
   font-size: 16px;
-   background: linear-gradient(135deg, #153677, #4e085f);
+  background: linear-gradient(270deg, #153677, #4e085f);
   margin: 20px 10px 20px;
   padding: 16px 50px;
   border-radius: 50px;
 }
 
+#onPlayBtn input:hover {
+  background: linear-gradient(90deg, #153677, #4e085f);
+  transform: perspective(4px) scale3d(1.05, 1.05, 1) translateZ(0) !important;
+
+}

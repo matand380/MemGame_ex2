@@ -27,6 +27,7 @@ $(document).ready(function () {
    * and starts a timer.
    */
   function startGame() {
+    startClock();
     $("#game-form").hide();
     $("#player-info").text("Player: " + playerName);
     $("#game-container").show();
@@ -35,7 +36,6 @@ $(document).ready(function () {
     $("#resume-btn").hide();
     generateCards();
     redrawGameBoard();
-    startClock();
   }
 
   /**
@@ -179,7 +179,7 @@ $(document).ready(function () {
   function startClock() {
     startTime = new Date().getTime() - elapsedTime;
     gameStarted = true;
-    gameInterval = setInterval(updateClock, 1000);
+    gameInterval = setInterval(updateClock);
   }
 
   function updateClock() {
@@ -198,7 +198,6 @@ $(document).ready(function () {
   }
 
   function checkGameEnd() {
-    // if(cardPairs % 2 !== 0) cardPairs++;
     if (matchedPairs === cardPairs) {
       clearInterval(gameInterval);
       gameStarted = false;
@@ -227,6 +226,7 @@ $(document).ready(function () {
     $("#game-form").show();
     matchedPairs = 0;
     gameStarted = false;
+    gamePaused = false;
     clearInterval(gameInterval);
     elapsedTime = 0;
   }
@@ -238,7 +238,7 @@ $(document).ready(function () {
     checkGameEnd();
     flippedCards = [];
   }
-  
+
   $("#pause-btn").click(function () {
     pauseGame();
   });
