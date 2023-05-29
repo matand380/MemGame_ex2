@@ -1,5 +1,3 @@
-<!--Matan Drabkin 201416690-->
-<!--Eviatar Didon 313205387-->
 
 $(document).ready(function () {
   var playerName;
@@ -46,7 +44,7 @@ $(document).ready(function () {
    * @return An array of card objects
    *
    */
-  
+
   function generateCards() {
     cards = [];
     var dir = "resources/gameCards/";
