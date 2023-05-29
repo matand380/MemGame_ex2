@@ -1,4 +1,5 @@
-// script.js
+<!--Matan Drabkin 201416690-->
+<!--Eviatar Didon 313205387-->
 
 $(document).ready(function () {
   var playerName;
